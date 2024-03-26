@@ -20,14 +20,14 @@ features:
     icon: 🛠️
     link: https://github.com/workcheng/weiya
   - title: proguard-javapackager-gradle-demo
-    details: 混淆-EXE打包-gradle-示例 Gradle Java
+    details: 混淆-EXE打包-Gradle-示例 Gradle Java
     icon: ⛺
     link: https://gitee.com/12581/proguard-javapackager-gradle-demo
   - title: 合并Excel工具
     details: 自动合并Excel工具 Python
     icon: 💝
     link: https://gitee.com/12581/merge_excel
-  - title: php发送邮件
+  - title: PHP发送邮件
     details: PHP发送邮件
     icon: 📧
     link: https://github.com/workcheng/phpmail
