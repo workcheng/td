@@ -16,7 +16,7 @@ hero:
 
 features:
   - title: 尾牙小程序
-    details: WeiYa基于微信公众号的签到、抽奖、发送弹幕程序，Spring Boot,JavaScript
+    details: WeiYa基于微信公众号的签到、抽奖、发送弹幕程序 Spring Boot JavaScript
     icon: 🛠️
     link: https://github.com/workcheng/weiya
   - title: proguard-javapackager-gradle-demo
