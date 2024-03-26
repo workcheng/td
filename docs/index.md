@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "云站速递"
-  text: "Build Happiness"
-  tagline: 建造快乐
+  text: "Build Software, Build Happiness"
+  tagline: 构建软件，构建快乐
   actions:
     - theme: brand
       text: Markdown Examples
