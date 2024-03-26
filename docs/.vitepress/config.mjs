@@ -6,7 +6,7 @@ export default defineConfig({
   description: "云站速递，建造快乐",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: '/images/favicon-dark.svg',
+    logo: { src: '/favicon-dark.svg', width: 24, height: 24 },
     nav: [
       { text: '首页', link: '/' },
       { text: '示例', link: '/markdown-examples' },
