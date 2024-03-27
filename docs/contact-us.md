@@ -3,8 +3,8 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: 'https://www.github.com/workcheng.png',
-    name: 'Any Cheng',
+    avatar: '/workcheng.jpg',
+    name: 'Andy Cheng',
     title: 'Creator',
     desc: 'Wechat(微信号): uoloandy',
     links: [
@@ -14,7 +14,7 @@ const members = [
 ]
 </script>
 
-# 联系我
+# 联系我们
 
 Say hello to our awesome team.
 

@@ -20,7 +20,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '示例', link: '/markdown-examples' },
-      { text: '联系我', link: '/contact-me' }
+      { text: '联系我们', link: '/contact-us' }
     ],
 
     sidebar: [
