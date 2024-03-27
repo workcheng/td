@@ -1,13 +1,13 @@
 
-​																	![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5RkRoYd65guD5FtbNgFoz71Fzyp1yc7WklYCvES93U4NELnJf4lFzgw/640?wx_fmt=other&wxfrom=13&wx_lazy=1&wx_co=1&tp=wxpic)
+# JVM的基础入门
 
-JVM内存划分
+## JVM内存划分
 
 #### **▐** **JVM运行时数据区域**
 
 堆、方法区（元空间）、虚拟机栈、本地方法栈、程序计数器。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiab1I94XLJKxdGAt89LyIz5MQuw2iaHTpga7O6MyUufibX0Apqibe429rWw/640?wx_fmt=png&from=appmsg&wxfrom=13&tp=wxpic)
+![图片](/JVM内存区域划分.webp)
 
 - Heap(堆)
 
@@ -48,7 +48,7 @@ PC，指的是存放下一条指令的位置的一个指针。它是一块较小
 #### **▐** **堆内存分配策略**
 
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiawLDA6vJpdxMt961flvSAfOfsG0kWJvOBibaxW00FSxgOKI6kgdyhzgA/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/堆内存分配策略.webp)
 
 1. 对象优先分配在Eden区，如果Eden区没有足够的空间进行分配时，虚拟机执行一次MinorGC。而那些无需回收的存活对象，将会进到 Survivor 的 From 区（From 区内存不足时，直接进入 Old 区）。
 2. 大对象直接进入老年代（需要大量连续内存空间的对象）。这样做的目的是避免在Eden区和两个Survivor区之间发生大量的内存拷贝（新生代采用复制算法收集内存）。
@@ -92,13 +92,11 @@ PC，指的是存放下一条指令的位置的一个指针。它是一块较小
 **虚引用**是一种形同虚设的引用，在现实场景中用的不是很多，它主要用来跟踪对象被垃圾回收的活动。
 
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5s4iaFibfqswhDiaUmcuk0ibG6v33ybaPY8N6ZVvedwxAbibQ1ib6BIlnJtRw/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
-
-JVM类加载过程
+## JVM类加载过程
 
 **过程：加载、验证、准备、解析、初始化**
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiaIDXE9XW2GIzRFLM0o9Gsiav3TP1n2xslguIhd3ia5EiaWPMIMJx5V6bdg/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/过程：加载、验证、准备、解析、初始化.webp)
 
 **加载阶段：**
 
@@ -113,22 +111,22 @@ JVM类加载过程
 3. 字节码验证（保证被校验类的方法在运行时不会做出危害虚拟机安全的行为）
 4. 符号引用验证（虚拟机将符号引用转化为直接引用时，解析阶段中发生）
 
-**准备阶段：**准备阶段是正式为类变量分配内存并设置类变量初始值的阶段。将对象初始化为“零”值
+**准备阶段：** 准备阶段是正式为类变量分配内存并设置类变量初始值的阶段。将对象初始化为“零”值
 
-**解析阶段：**解析阶段时虚拟机将常量池内的符号引用替换为直接引用的过程。
+**解析阶段：** 解析阶段时虚拟机将常量池内的符号引用替换为直接引用的过程。
 
-**字符串常量池：**堆上，默认class文件的静态常量池
+**字符串常量池：** 堆上，默认class文件的静态常量池
 
-**运行时常量池：**在方法区，属于元空间
+**运行时常量池：** 在方法区，属于元空间
 
-**初始化阶段：**初始化阶段时加载过程的最后一步，而这一阶段也是真正意义上开始执行类中定义的Java程序代码。
+**初始化阶段：** 初始化阶段时加载过程的最后一步，而这一阶段也是真正意义上开始执行类中定义的Java程序代码。
 
 #### **▐** **双亲委派机制**
 
 每⼀个类都有⼀个对应它的类加载器。系统中的 ClassLoder 在协同⼯作的时候会默认使⽤ 双亲委派模型 。即在类加载的时候，系统会⾸先判断当前类是否被加载过。已经被加载的类会直接返回，否则才会尝试加载。加载的时候，⾸先会把该请求委派该⽗类加载器的 loadClass() 处理，因此所有的请求最终都应该传送到顶层的启动类加载器 BootstrapClassLoader 中。当⽗类加载器⽆法处理时，才由⾃⼰来处理。当⽗类加载器为null时，会使⽤启动类加载器 BootstrapClassLoader 作为⽗类加载器。
 
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiabw3PuncELVZ1icTibe4q3USpoBy8MC9uwtrcxhiawlXns35fBGmnp2mhQ/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/双亲委派机制.webp)
 
 **使用好处：**
 
@@ -155,9 +153,7 @@ JVM类加载过程
 
 总结一下以上步骤，WebAppClassLoader 加载类的时候，故意打破了JVM 双亲委派机制，绕开了 AppClassLoader，直接先使用 ExtClassLoader 来加载类。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5Mcf2mWYYibJt6RwM7zgbBS247KgYR9yVeZewdqR7qYwa7Rp0eCKm7JA/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
-
-JVM垃圾回收
+## JVM垃圾回收
 
 #### **▐** **存活算法和两次标记过程**
 
@@ -211,7 +207,7 @@ JVM垃圾回收
 
 Safepoint 当发生 GC 时，用户线程必须全部停下来，才可以进行垃圾回收，这个状态我们可以认为 JVM 是安全的（safe），整个堆的状态是稳定的。如果在 GC 前，有线程迟迟进入不了 safepoint，那么整个 JVM 都在等待这个阻塞的线程，造成了整体 GC 的时间变长。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiah83FjGE0YpkLn9tdV0f0ItpFMBr0qDwamfPxEvGFLicYibjkaP8rtK5A/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/分代收集.webp)
 
 **MinorGC、MajorGC、FullGC**
 
@@ -243,7 +239,7 @@ Safepoint 当发生 GC 时，用户线程必须全部停下来，才可以进行
 
 #### **▐** **垃圾收集器**
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRia0qby1ZKbFprVvDcawhzibHWfjAYK6of4icjH8vIVKX5r7JxFKq3f07HA/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/垃圾收集器.webp)
 
 - JDK3：Serial Parnew 关注效率
 
@@ -276,19 +272,19 @@ Parallel Scavenge收集器的⽼年代版本。使⽤多线程和“标记-整�
 
 CMS收集器是一种年老代垃圾收集器，其最主要目标是获取最短垃圾回收停顿时间，和其他年老代使用标记-整理算法不同，它使用多线程的标记-清除算法。最短的垃圾收集停顿时间可以为交互比较高的程序提高用户体验。CMS 工作机制相比其他的垃圾收集器来说更复杂，整个过程分为以下 4 个阶段：
 
-**初始标记：**只是标记一下 GC Roots 能直接关联的对象，速度很快，STW。
+**初始标记：** 只是标记一下 GC Roots 能直接关联的对象，速度很快，STW。
 
-**并发标记：**进行 ReferenceChains跟踪的过程，和用户线程一起工作，不需要暂停工作线程。
+**并发标记：** 进行 ReferenceChains跟踪的过程，和用户线程一起工作，不需要暂停工作线程。
 
-**重新标记：**为了修正在并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，STW。
+**重新标记：** 为了修正在并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，STW。
 
-**并发清除：**清除 GC Roots 不可达对象，和用户线程一起工作，不需要暂停工作线程。
+**并发清除：** 清除 GC Roots 不可达对象，和用户线程一起工作，不需要暂停工作线程。
 
 由于耗时最长的并发标记和并发清除过程中，垃圾收集线程可以和用户现在一起并发工作，所以总体上来看CMS 收集器的内存回收和用户线程是一起并发地执行。
 
-**优点：**并发收集、低停顿
+**优点：** 并发收集、低停顿
 
-**缺点：**对CPU资源敏感；⽆法处理浮动垃圾；使⽤“标记清除”算法，会导致⼤量空间碎⽚产⽣。
+**缺点：** 对CPU资源敏感；⽆法处理浮动垃圾；使⽤“标记清除”算法，会导致⼤量空间碎⽚产⽣。
 
 - JDK9-G1：（精准控制停顿时间，避免垃圾碎片）
 
@@ -333,7 +329,7 @@ G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定�
 
 对应进程的JVM状态以定位问题和解决问题并作出相应的优化
 
-**常用命令：**jps、jinfo、jstat、jstack、jmap
+**常用命令：** jps、jinfo、jstat、jstack、jmap
 
 **jps：查看java进程及相关信息**
 
@@ -379,16 +375,16 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 
 默认G1垃圾回收器
 
-**JDK10：**其重点在于通过完全GC并行来改善G1最坏情况的等待时间。
+**JDK10：** 其重点在于通过完全GC并行来改善G1最坏情况的等待时间。
 
 **JDK11：**
 
 1. ZGC (并发回收的策略) 4TB
 2. 用于 Lambda 参数的局部变量语法
 
-**JDK12：**Shenandoah GC (GC 算法)停顿时间和堆的大小没有任何关系，并行关注停顿响应时间。
+**JDK12：** Shenandoah GC (GC 算法)停顿时间和堆的大小没有任何关系，并行关注停顿响应时间。
 
-**JDK13：**增加ZGC以将未使用的堆内存返回给操作系统，16TB
+**JDK13：** 增加ZGC以将未使用的堆内存返回给操作系统，16TB
 
 **JDK14：**
 
@@ -396,9 +392,7 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 2. 将ZGC垃圾回收器应用到macOS和windows平台。
 
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5ud5n7myibIvZHIq1ia9W8uwXJ6Z8LkILkKw5wgGVF0sfhcMcrnZhzkaw/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
-
-线上故障排查
+## 线上故障排查
 
 
 #### **▐** **硬件故障排查**
@@ -415,7 +409,7 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 
 **瞬时态和历史态**
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRia9D3hY7kTV0bXr7TAT7FGs1Q5MNACStUNkTLuzEWiaoQibiaA8sjn0kpZg/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/瞬时态和历史态.webp)
 
 查看比如 CPU、系统内存等，通过历史状态可以体现一个趋势性问题，而这些信息的获取一般依靠监控系统的协作。 
 
@@ -587,7 +581,7 @@ jhsdb jmap  --heap --pid  37340jhsdb jmap  --pid  37288jhsdb jmap  --histo --pid
 
 有些数据需要使用 HttpClient 来获取进行补全。提供数据的服务提供商有的响应时间可能会很长，也有可能会造成服务整体的阻塞。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRian7zzYliaRjKwerZA3dQPa4AZk5QSUTViblq1AmYQwqJBu7icN1mWwnZbQ/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](/大屏异常JUC调优.webp)
 
 接口 A 通过 HttpClient 访问服务 2，响应 100ms 后返回；接口 B 访问服务 3，耗时 2 秒。HttpClient 本身是有一个最大连接数限制的，如果服务 3 迟迟不返回，就会造成 HttpClient 的连接数达到上限，**概括来讲，就是同一服务，由于一个耗时非常长的接口，进而引起了整体的服务不可用。**
 
