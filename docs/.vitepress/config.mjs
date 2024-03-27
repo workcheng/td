@@ -18,6 +18,7 @@ export default defineConfig({
         text: '示例',
         items: [
           { text: '使用宝塔Webhook自动同步Git仓库', link: '/notes/202403/使用宝塔Webhook自动同步Git仓库' },
+          { text: 'JVM的基础入门', link: '/notes/202403/JVM的基础入门' },
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
