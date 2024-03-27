@@ -9,8 +9,6 @@ JVM内存划分
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiab1I94XLJKxdGAt89LyIz5MQuw2iaHTpga7O6MyUufibX0Apqibe429rWw/640?wx_fmt=png&from=appmsg&wxfrom=13&tp=wxpic)
 
-
-
 - Heap(堆)
 
 对象的实例以及数组的内存都是要在堆上进行分配的，堆是线程共享的一块区域，用来存放对象实例，也是垃圾回收（GC）的主要区域；开启逃逸分析后，某些未逃逸的对象可以通过标量替换的方式在栈中分配。
@@ -19,18 +17,11 @@ JVM内存划分
 
 - 方法区
 
-
-
 对于JVM的方法区也可以称之为永久区，它储存的是已经被java虚拟机加载的类信息、常量、静态变量；Jdk1.8以后取消了方法区这个概念，称之为元空间（MetaSpace）；
 
 当应用中的 Java 类过多时，比如 **Spring 等一些使用动态代理的框架生成了很多类**，如果占用空间超出了我们的设定值，就会发生**元空间溢出。**
 
-**
-**
-
 - 虚拟机栈
-
-
 
 虚拟机栈**是线程私有的**，他的生命周期和线程的生命周期是一致的。里面装的是一个一个的**栈帧**，每一个方法在执行的时候都会创建一个栈帧，栈帧中用来存放（**局部变量表、操作数栈 、动态链接 、返回地址**）；在Java虚拟机规范中，对此区域规定了两种异常状况：如果线程请求的栈深度大于虚拟机所允许的深度，将会抛出**StackOverflowError**异常；如果虚拟机栈动态扩展时无法申请到足够的内存，就会抛出**OutOfMemoryError**异常。
 
@@ -46,26 +37,15 @@ JVM内存划分
 
    为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各种层次的优化，比如锁粗化等。
 
-
-
 - 本地方法栈
-
-
 
 本地方法栈和虚拟机栈类似，不同的是虚拟机栈服务的是Java方法，而本地方法栈服务的是Native方法。在HotSpot虚拟机实现中是把本地方法栈和虚拟机栈合二为一的，同理它也会抛出StackOverflowError和OOM异常。
 
-
-
 - PC程序计数器
-
-
 
 PC，指的是存放下一条指令的位置的一个指针。它是一块较小的内存空间，且是线程私有的。由于线程的切换，CPU在执行的过程中，需要记住原线程的下一条指令的位置，所以每一个线程都需要有自己的PC。
 
-
-
 #### **▐** **堆内存分配策略**
-
 
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiawLDA6vJpdxMt961flvSAfOfsG0kWJvOBibaxW00FSxgOKI6kgdyhzgA/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
@@ -75,7 +55,6 @@ PC，指的是存放下一条指令的位置的一个指针。它是一块较小
 3. 长期存活的对象进入老年代。虚拟机为每个对象定义了一个年龄（Age Count）计数器，如果对象经过了1次Minor GC那么对象会进入Survivor区，之后每经过一次Minor GC那么对象的年龄加1，直到达到阀值（默认15次），对象进入老年区。
 4. （**动态对象年龄判定：**程序从年龄最小的对象开始累加，如果累加的对象大小，大于幸存区的一半，则将当前的对象 age 作为新的阈值，年龄大于此阈值的对象则直接进入老年代）。
 5. 每次进行Minor GC或者大对象直接进入老年区时，JVM会计算所需空间大小如小于老年区的剩余值大小，则进行一次Full GC。
-
 
 
 #### **▐** **创建一个对象的步骤**
@@ -113,16 +92,11 @@ PC，指的是存放下一条指令的位置的一个指针。它是一块较小
 **虚引用**是一种形同虚设的引用，在现实场景中用的不是很多，它主要用来跟踪对象被垃圾回收的活动。
 
 
-
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5s4iaFibfqswhDiaUmcuk0ibG6v33ybaPY8N6ZVvedwxAbibQ1ib6BIlnJtRw/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
 
 JVM类加载过程
 
-
-
 **过程：加载、验证、准备、解析、初始化**
-
-
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiaIDXE9XW2GIzRFLM0o9Gsiav3TP1n2xslguIhd3ia5EiaWPMIMJx5V6bdg/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
 
@@ -132,16 +106,12 @@ JVM类加载过程
 2. 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。
 3. 在Java堆中生成一个代表这个类的java.lang.class对象，作为方法区这些数据的访问入口。
 
-
-
 **验证阶段：**
 
 1. 文件格式验证（是否符合Class文件格式的规范，并且能被当前版本的虚拟机处理）
 2. 元数据验证（对字节码描述的信息进行语意分析，以保证其描述的信息符合Java语言规范要求）
 3. 字节码验证（保证被校验类的方法在运行时不会做出危害虚拟机安全的行为）
 4. 符号引用验证（虚拟机将符号引用转化为直接引用时，解析阶段中发生）
-
-
 
 **准备阶段：**准备阶段是正式为类变量分配内存并设置类变量初始值的阶段。将对象初始化为“零”值
 
@@ -153,12 +123,9 @@ JVM类加载过程
 
 **初始化阶段：**初始化阶段时加载过程的最后一步，而这一阶段也是真正意义上开始执行类中定义的Java程序代码。
 
-
-
 #### **▐** **双亲委派机制**
 
 每⼀个类都有⼀个对应它的类加载器。系统中的 ClassLoder 在协同⼯作的时候会默认使⽤ 双亲委派模型 。即在类加载的时候，系统会⾸先判断当前类是否被加载过。已经被加载的类会直接返回，否则才会尝试加载。加载的时候，⾸先会把该请求委派该⽗类加载器的 loadClass() 处理，因此所有的请求最终都应该传送到顶层的启动类加载器 BootstrapClassLoader 中。当⽗类加载器⽆法处理时，才由⾃⼰来处理。当⽗类加载器为null时，会使⽤启动类加载器 BootstrapClassLoader 作为⽗类加载器。
-
 
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naJt4iaBZtjwru2flUsbQBzRiabw3PuncELVZ1icTibe4q3USpoBy8MC9uwtrcxhiawlXns35fBGmnp2mhQ/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
@@ -166,8 +133,6 @@ JVM类加载过程
 **使用好处：**
 
 此机制保证JDK核心类的优先加载；使得Java程序的稳定运⾏，可以避免类的重复加载，也保证了 Java 的核⼼ API 不被篡改。如果不⽤没有使⽤双亲委派模型，⽽是每个类加载器加载⾃⼰的话就会出现⼀些问题，⽐如我们编写⼀个称为 java.lang.Object 类的话，那么程序运⾏的时候，系统就会出现多个不同的Object 类。
-
-
 
 **破坏双亲委派机制：**
 
@@ -177,11 +142,7 @@ JVM类加载过程
 
 3. Java 的 SPI，发起者 BootstrapClassLoader 已经是最上层了，它直接获取了 AppClassLoader 进行驱动加载，和双亲委派是相反的。
 
-   
-
 #### **▐** **tomcat的类加载机制**
-
-
 
 **步骤：**
 
@@ -192,17 +153,11 @@ JVM类加载过程
 5. 加载依然失败，才使用 AppClassLoader 继续加载。
 6. 都没有加载成功的话，抛出异常。
 
-
-
 总结一下以上步骤，WebAppClassLoader 加载类的时候，故意打破了JVM 双亲委派机制，绕开了 AppClassLoader，直接先使用 ExtClassLoader 来加载类。
-
-
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5Mcf2mWYYibJt6RwM7zgbBS247KgYR9yVeZewdqR7qYwa7Rp0eCKm7JA/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
 
 JVM垃圾回收
-
-
 
 #### **▐** **存活算法和两次标记过程**
 
@@ -214,8 +169,6 @@ JVM垃圾回收
 
 缺点：他很难解决对象之间相互循环引用的问题，基本上被抛弃
 
-
-
 **可达性分析法：**
 
 通过一系列的成为“GC Roots”(活动线程相关的各种引用，虚拟机栈帧引用，静态变量引用，JNI引用)的对象作为起始点，从这些节点ReferenceChains开始向下搜索，搜索所走过的路径成为引用链，当一个对象到GC ROOTS没有任何引用链相连时，则证明此对象时不可用的；
@@ -224,15 +177,11 @@ JVM垃圾回收
 
 对象被回收之前，该对象的finalize()方法会被调用；两次标记，即第一次标记不在“关系网”中的对象。第二次的话就要先判断该对象有没有实现finalize()方法了，如果没有实现就直接判断该对象可回收；如果实现了就会先放在一个队列中，并由虚拟机建立的一个低优先级的线程去执行它，随后就会进行第二次的小规模标记，在这次被标记的对象就会真正的被回收了。
 
-
-
 #### **▐** **垃圾回收算法**
 
 **垃圾回收算法：**
 
 复制算法、标记清除、标记整理、分代收集
-
-
 
 **复制算法：(young)**
 
@@ -306,11 +255,7 @@ Serial 是一个单线程的收集器，它不但只会使用一个 CPU 或一�
 
 ParNew 垃圾收集器其实是 Serial 收集器的多线程版本，也使用复制算法，除了使用多线程进行垃圾收集之外，其余的行为和 Serial 收集器完全一样，ParNew 垃圾收集器在垃圾收集过程中同样也要暂停所有其他的工作线程。
 
-
-
 - JDK5：parallel Scavenge+（Serial old/parallel old）关注吞吐量
-
-
 
 **parallel Scavenge：(关注吞吐量)**
 
@@ -327,11 +272,7 @@ Serial收集器的⽼年代版本，它同样是⼀个单线程收集器，使�
 
 Parallel Scavenge收集器的⽼年代版本。使⽤多线程和“标记-整理”算法。
 
-
-
 - JDK8-CMS：（关注最短垃圾回收停顿时间）
-
-
 
 CMS收集器是一种年老代垃圾收集器，其最主要目标是获取最短垃圾回收停顿时间，和其他年老代使用标记-整理算法不同，它使用多线程的标记-清除算法。最短的垃圾收集停顿时间可以为交互比较高的程序提高用户体验。CMS 工作机制相比其他的垃圾收集器来说更复杂，整个过程分为以下 4 个阶段：
 
@@ -349,11 +290,7 @@ CMS收集器是一种年老代垃圾收集器，其最主要目标是获取最�
 
 **缺点：**对CPU资源敏感；⽆法处理浮动垃圾；使⽤“标记清除”算法，会导致⼤量空间碎⽚产⽣。
 
-
-
 - JDK9-G1：（精准控制停顿时间，避免垃圾碎片）
-
-
 
 是⼀款⾯向服务器的垃圾收集器,主要针对配备多颗处理器及⼤容量内存的机器.以极⾼概率满⾜GC停顿时间要求的同时,还具备⾼吞吐量性能特征；相比与 CMS 收集器，G1 收集器两个最突出的改进是：
 
@@ -368,11 +305,7 @@ G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定�
 3. 最终标记：Stop The World，使用多条标记线程并发执行；
 4. 筛选回收：回收废弃对象，此时也要 Stop The World，并使用多条筛选回收线程并发执行；
 
-
-
 - JDK11-ZGC:（在不关注容量的情况获取最小停顿时间5TB/10ms）
-
-
 
 着色笔技术：加快标记过程
 
@@ -381,7 +314,6 @@ G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定�
 1. 支持 TB 级堆内存（最大 4T， JDK13 最大16TB）
 2. 最大 GC 停顿 10ms
 3. 对吞吐量影响最大，不超过 15%
-
 
 
 #### **▐** **配置垃圾收集器**
@@ -397,7 +329,6 @@ G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定�
 5. 我会通过记录详细的 GC 日志，来找到这个瓶颈点，借用 GCeasy 这样的日志分析工具，定位问题。
 
 
-
 #### **▐** **JVM性能调优**
 
 对应进程的JVM状态以定位问题和解决问题并作出相应的优化
@@ -406,19 +337,11 @@ G1 收集器避免全区域垃圾收集，它把堆内存划分为大小固定�
 
 **jps：查看java进程及相关信息**
 
-- 
-- 
-- 
-
 ```
 jps -l 输出jar包路径，类全名jps -m 输出main参数jps -v 输出JVM参数
 ```
 
 **jinfo：查看JVM参数**
-
-- 
-- 
-- 
 
 ```
 jinfo 11666jinfo -flags 11666Xmx、Xms、Xmn、MetaspaceSize
@@ -426,15 +349,11 @@ jinfo 11666jinfo -flags 11666Xmx、Xms、Xmn、MetaspaceSize
 
 **jstat：查看JVM运行时的状态信息，包括内存状态、垃圾回收**
 
-- 
-
 ```
 jstat [option] LVMID [interval] [count]其中LVMID是进程id，interval是打印间隔时间（毫秒），count是打印次数（默认一直打印）  option参数解释：-gc 垃圾回收堆的行为统计-gccapacity 各个垃圾回收代容量(young,old,perm)和他们相应的空间统计-gcutil 垃圾回收统计概述-gcnew 新生代行为统计-gcold 年老代和永生代行为统计
 ```
 
 **jstack：查看JVM线程快照，jstack命令可以定位线程出现长时间卡顿的原因，例如死锁，死循环**
-
-- 
 
 ```
 jstack [-l] <pid> (连接运行中的进程)  option参数解释：-F 当使用jstack <pid>无响应时，强制输出线程堆栈。-m 同时输出java和本地堆栈(混合模式)-l 额外显示锁信息
@@ -442,13 +361,9 @@ jstack [-l] <pid> (连接运行中的进程)  option参数解释：-F 当使用j
 
 **jmap：可以用来查看内存信息(配合jhat使用)**
 
-- 
-
 ```
 jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打印java heap摘要-dump:<dump-options> 生成java堆的dump文件
 ```
-
-
 
 #### **▐** **JDK新特性**
 
@@ -457,8 +372,6 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 支持 Lamda 表达式、集合的 stream 操作、提升HashMap性能
 
 **JDK9**
-
-- 
 
 ```
 //Stream API中iterate方法的新重载方法，可以指定什么时候结束迭代IntStream.iterate(1, i -> i < 100, i -> i + 1).forEach(System.out::println);
@@ -483,11 +396,9 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 2. 将ZGC垃圾回收器应用到macOS和windows平台。
 
 
-
 ![图片](https://mmbiz.qpic.cn/mmbiz_png/33P2FdAnju8X1wEorjS3bDLnHiar4vtV5ud5n7myibIvZHIq1ia9W8uwXJ6Z8LkILkKw5wgGVF0sfhcMcrnZhzkaw/640?wx_fmt=other&wxfrom=5&wx_lazy=1&wx_co=1&tp=wxpic)
 
 线上故障排查
-
 
 
 #### **▐** **硬件故障排查**
@@ -512,8 +423,6 @@ jmap [option] <pid> (连接正在执行的进程)option参数解释：-heap 打�
 
 **（1）系统当前网络连接**
 
-- 
-
 ```
 ss -antp > $DUMP_DIR/ss.dump 2>&1
 ```
@@ -524,15 +433,11 @@ ss -antp > $DUMP_DIR/ss.dump 2>&1
 
 **（2）网络状态统计**
 
-- 
-
 ```
 netstat -s > $DUMP_DIR/netstat-s.dump 2>&1
 ```
 
 它能够按照各个协议进行统计输出，对把握当时整个网络状态，有非常大的作用。
-
-- 
 
 ```
 sar -n DEV 1 2 > $DUMP_DIR/sar-traffic.dump 2>&1
@@ -542,8 +447,6 @@ sar -n DEV 1 2 > $DUMP_DIR/sar-traffic.dump 2>&1
 
 **（3）进程资源**
 
-- 
-
 ```
 lsof -p $PID > $DUMP_DIR/lsof-$PID.dump
 ```
@@ -551,8 +454,6 @@ lsof -p $PID > $DUMP_DIR/lsof-$PID.dump
 通过查看进程，能看到打开了哪些文件，可以以进程的维度来查看整个资源的使用情况，包括每条网络连接、每个打开的文件句柄。同时，也可以很容易的看到连接到了哪些服务器、使用了哪些资源。这个命令在资源非常多的情况下，输出稍慢，请耐心等待。
 
 **（4）CPU 资源**
-
-- 
 
 ```
 mpstat > $DUMP_DIR/mpstat.dump 2>&1vmstat 1 3 > $DUMP_DIR/vmstat.dump 2>&1sar -p ALL  > $DUMP_DIR/sar-cpu.dump  2>&1uptime > $DUMP_DIR/uptime.dump 2>&1
@@ -570,8 +471,6 @@ iostat -x > $DUMP_DIR/iostat.dump 2>&1
 
 **（6）内存问题**
 
-- 
-
 ```
 free -h > $DUMP_DIR/free.dump 2>&1
 ```
@@ -579,8 +478,6 @@ free -h > $DUMP_DIR/free.dump 2>&1
 free 命令能够大体展现操作系统的内存概况，这是故障排查中一个非常重要的点，比如 SWAP 影响了 GC，SLAB 区挤占了 JVM 的内存。
 
 **（7）其他全局**
-
-- 
 
 ```
 ps -ef > $DUMP_DIR/ps.dump 2>&1dmesg > $DUMP_DIR/dmesg.dump 2>&1sysctl -a > $DUMP_DIR/sysctl.dump 2>&1
@@ -590,8 +487,6 @@ dmesg 是许多静悄悄死掉的服务留下的最后一点线索。当然，ps
 
 **（8）进程快照，最后的遗言（jinfo）**
 
-- 
-
 ```
 ${JDK_BIN}jinfo $PID > $DUMP_DIR/jinfo.dump 2>&1
 ```
@@ -599,8 +494,6 @@ ${JDK_BIN}jinfo $PID > $DUMP_DIR/jinfo.dump 2>&1
 此命令将输出 Java 的基本进程信息，包括环境变量和参数配置，可以查看是否因为一些错误的配置造成了 JVM 问题。
 
 **（9）dump 堆信息**
-
-- 
 
 ```
 ${JDK_BIN}jstat -gcutil $PID > $DUMP_DIR/jstat-gcutil.dump 2>&1${JDK_BIN}jstat -gccapacity $PID > $DUMP_DIR/jstat-gccapacity.dump 2>&1
@@ -610,8 +503,6 @@ jstat 将输出当前的 gc 信息。一般，基本能大体看出一个端倪�
 
 **（10）堆信息**
 
-- 
-
 ```
 ${JDK_BIN}jmap $PID > $DUMP_DIR/jmap.dump 2>&1${JDK_BIN}jmap -heap $PID > $DUMP_DIR/jmap-heap.dump 2>&1${JDK_BIN}jmap -histo $PID > $DUMP_DIR/jmap-histo.dump 2>&1${JDK_BIN}jmap -dump:format=b,file=$DUMP_DIR/heap.bin $PID > /dev/null  2>&1
 ```
@@ -620,15 +511,11 @@ jmap 将会得到当前 Java 进程的 dump 信息。如上所示，其实最有
 
 **（11）JVM 执行栈**
 
-- 
-
 ```
 ${JDK_BIN}jstack $PID > $DUMP_DIR/jstack.dump 2>&1
 ```
 
 jstack 将会获取当时的执行栈。一般会多次取值，我们这里取一次即可。这些信息非常有用，能够还原 Java 进程中的线程情况。
-
-- 
 
 ```
 top -Hp $PID -b -n 1 -c >  $DUMP_DIR/top-$PID.dump 2>&1
@@ -638,23 +525,17 @@ top -Hp $PID -b -n 1 -c >  $DUMP_DIR/top-$PID.dump 2>&1
 
 **（12）高级替补**
 
-- 
-
 ```
 kill -3 $PID
 ```
 
 有时候，jstack 并不能够运行，有很多原因，比如 Java 进程几乎不响应了等之类的情况。我们会尝试向进程发送 kill -3 信号，这个信号将会打印 jstack 的 trace 信息到日志文件中，是 jstack 的一个替补方案。
 
-- 
-
 ```
 gcore -o $DUMP_DIR/core $PID
 ```
 
 对于 jmap 无法执行的问题，也有替补，那就是 GDB 组件中的 gcore，将会生成一个 core 文件。我们可以使用如下的命令去生成 dump：
-
-- 
 
 ```
 ${JDK_BIN}jhsdb jmap --exe ${JDK}java  --core $DUMP_DIR/core --binaryheap
@@ -664,35 +545,21 @@ ${JDK_BIN}jhsdb jmap --exe ${JDK}java  --core $DUMP_DIR/core --binaryheap
 
 稍微提一下 jmap 命令，它在 9 版本里被干掉了，取而代之的是 jhsdb，你可以像下面的命令一样使用。
 
-- 
-
 ```
 jhsdb jmap  --heap --pid  37340jhsdb jmap  --pid  37288jhsdb jmap  --histo --pid  37340jhsdb jmap  --binaryheap --pid  37340
 ```
 
 一般内存溢出，表现形式就是 Old 区的占用持续上升，即使经过了多轮 GC 也没有明显改善。比如ThreadLocal里面的GC Roots，内存泄漏的根本就是，这些对象并没有切断和 GC Roots 的关系，可通过一些工具，能够看到它们的联系。
 
-
-
 #### **▐** **报表异常 | JVM调优**
-
-
 
 有一个报表系统，频繁发生内存溢出，在高峰期间使用时，还会频繁的发生拒绝服务，由于大多数使用者是管理员角色，所以很快就反馈到研发这里。
 
-
-
 业务场景是由于有些结果集的字段不是太全，因此需要对结果集合进行循环，并通过 HttpClient 调用其他服务的接口进行数据填充。使用 Guava 做了 JVM 内缓存，但是响应时间依然很长。
-
-
 
 初步排查，JVM 的资源太少。接口 A 每次进行报表计算时，都要涉及几百兆的内存，而且在内存里驻留很长时间，有些计算又非常耗 CPU，特别的“吃”资源。而我们分配给 JVM 的内存只有 3 GB，在多人访问这些接口的时候，内存就不够用了，进而发生了 OOM。在这种情况下，没办法，只有升级机器。把机器配置升级到 4C8G，给 JVM 分配 6GB 的内存，这样 OOM 问题就消失了。但随之而来的是频繁的 GC 问题和超长的 GC 时间，平均 GC 时间竟然有 5 秒多。
 
-
-
 进一步，由于报表系统和高并发系统不太一样，它的对象，存活时长大得多，并不能仅仅通过增加年轻代来解决；而且，如果增加了年轻代，那么必然减少了老年代的大小，由于 CMS 的碎片和浮动垃圾问题，我们可用的空间就更少了。虽然服务能够满足目前的需求，但还有一些不太确定的风险。
-
-
 
 第一，了解到程序中有很多缓存数据和静态统计数据，为了减少 MinorGC 的次数，通过分析 GC 日志打印的对象年龄分布，把 MaxTenuringThreshold 参数调整到了 3（特殊场景特殊的配置）。这个参数是让年轻代的这些对象，赶紧回到老年代去，不要老呆在年轻代里。
 
@@ -700,23 +567,13 @@ jhsdb jmap  --heap --pid  37340jhsdb jmap  --pid  37288jhsdb jmap  --histo --pid
 
 第三，由于缓存的使用，有大量的弱引用，拿一次长达 10 秒的 GC 来说。我们发现在 GC 日志里，处理 weak refs 的时间较长，达到了 4.5 秒。这里可以加入参数 ParallelRefProcEnabled 来并行处理Reference，以加快处理速度，缩短耗时。
 
-
-
 优化之后，效果不错，但并不是特别明显。经过评估，针对高峰时期的情况进行调研，我们决定再次提升机器性能，改用 8core16g 的机器。但是，这带来另外一个问题。
-
-
 
 **高性能的机器带来了非常大的服务吞吐量**，通过 jstat 进行监控，能够看到年轻代的分配速率明显提高，但随之而来的 MinorGC 时长却变的不可控，有时候会超过 1 秒。累积的请求造成了更加严重的后果。
 
-
-
 这是由于堆空间明显加大造成的回收时间加长。为了获取较小的停顿时间，我们在堆上改用了 G1 垃圾回收器，把它的目标设定在 200ms。G1 是一款非常优秀的垃圾收集器，不仅适合堆内存大的应用，同时也简化了调优的工作。通过主要的参数初始和最大堆空间、以及最大容忍的 GC 暂停目标，就能得到不错的性能。修改之后，虽然 GC 更加频繁了一些，但是停顿时间都比较小，应用的运行较为平滑。
 
-
-
 到目前为止，也只是勉强顶住了已有的业务，但是，这时候领导层面又发力，要求报表系统可以支持未来两年业务10到100倍的增长，并保持其可用性，但是这个“千疮百孔”的报表系统，稍微一压测，就宕机，那如何应对十倍百倍的压力呢 ? 硬件即使可以做到动态扩容，但是毕竟也有极限。
-
-
 
 使用 MAT 分析堆快照，发现很多地方可以通过代码优化，那些占用内存特别多的对象：
 
@@ -724,12 +581,8 @@ jhsdb jmap  --heap --pid  37340jhsdb jmap  --pid  37288jhsdb jmap  --histo --pid
 2. 报表系统中cache实际的命中率并不高，将Guava 的 Cache 引用级别改成弱引用（WeakKeys）；
 3. 限制报表导入文件大小，同时拆分用户超大范围查询导出请求。
 
-
-
 每一步操作都使得JVM使用变得更加可用，一系列优化以后，机器相同压测数据性能提升了数倍。
-
  
-
 #### **▐** **大屏异常 | JUC调优**
 
 有些数据需要使用 HttpClient 来获取进行补全。提供数据的服务提供商有的响应时间可能会很长，也有可能会造成服务整体的阻塞。
@@ -740,15 +593,9 @@ jhsdb jmap  --heap --pid  37340jhsdb jmap  --pid  37288jhsdb jmap  --histo --pid
 
 这个时候，通过 jstack 打印栈信息，会发现大多数竟然阻塞在了接口 A 上，而不是耗时更长的接口 B，这个现象起初十分具有迷惑性，不过经过分析后，我们猜想其实是因为接口 A 的速度比较快，在问题发生点进入了更多的请求，它们全部都阻塞住的同时被打印出来了。
 
-
-
 为了验证这个问题，我搭建了一个demo 工程，模拟了两个使用同一个 HttpClient 的接口。fast 接口用来访问百度，很快就能返回；slow 接口访问谷歌，由于众所周知的原因，会阻塞直到超时，大约 10 s。利用ab对两个接口进行压测，同时使用 jstack 工具 dump 堆栈。首先使用 jps 命令找到进程号，然后把结果重定向到文件（可以参考 10271.jstack 文件）。
 
-
-
 过滤一下 nio 关键字，可以查看 tomcat 相关的线程，足足有 200 个，这和 Spring Boot 默认的 maxThreads 个数不谋而合。更要命的是，有大多数线程，都处于 BLOCKED 状态，说明线程等待资源超时。通过grep fast | wc -l 分析，确实200个中有150个都是blocked的fast的进程。
-
-
 
 问题找到了，解决方式就顺利成章了。
 
@@ -780,26 +627,16 @@ find / | grep "xxx.log"
 
 swap 是很多性能场景的万恶之源，建议禁用。在高并发 SWAP 绝对能让你体验到它魔鬼性的一面：进程倒是死不了了，但 GC 时间长的却让人无法忍受。
 
-
-
 #### **▐** **内存溢出 | Cache调优**
 
-**
-**
-
 > 有一次线上遇到故障，重新启动后，使用 jstat 命令，发现 Old 区一直在增长。我使用 jmap 命令，导出了一份线上堆栈，然后使用 MAT 进行分析，通过对 GC Roots 的分析，发现了一个非常大的 HashMap 对象，这个原本是其他同事做缓存用的，但是做了一个无界缓存，没有设置超时时间或者 LRU 策略，在使用上又没有重写key类对象的hashcode和equals方法，对象无法取出也直接造成了堆内存占用一直上升，后来，将这个缓存改成 guava 的 Cache，并设置了弱引用，故障就消失了。
->
 > 关于文件处理器的应用，在读取或者写入一些文件之后，由于发生了一些异常，close 方法又没有放在 finally块里面，造成了文件句柄的泄漏。由于文件处理十分频繁，产生了严重的内存泄漏问题。
-
-
 
 内存溢出是一个结果，而内存泄漏是一个原因。内存溢出的原因有内存空间不足、配置错误等因素。一些错误的编程方式，不再被使用的对象、没有被回收、没有及时切断与 GC Roots 的联系，这就是内存泄漏。
 
 举个例子，有团队使用了 HashMap 做缓存，但是并没有设置超时时间或者 LRU 策略，造成了放入 Map 对象的数据越来越多，而产生了内存泄漏。
 
 再来看一个经常发生的内存泄漏的例子，也是由于 HashMap 产生的。代码如下，由于没有重写 Key 类的 hashCode 和 equals 方法，造成了放入 HashMap 的所有对象都无法被取出来，它们和外界失联了。所以下面的代码结果是 null。
-
-- 
 
 ```
 //leak example
@@ -834,15 +671,11 @@ public class HashMapLeakDemo {
 
 （1）使用 top 命令，查找到使用 CPU 最多的某个进程，记录它的 pid。使用 Shift + P 快捷键可以按 CPU 的使用率进行排序。
 
-- 
-
 ```
 top
 ```
 
 （2）再次使用 top 命令，加 -H 参数，查看某个进程中使用 CPU 最多的某个线程，记录线程的 ID。
-
-- 
 
 ```
 top -Hp $pid
@@ -850,23 +683,17 @@ top -Hp $pid
 
 （3）使用 printf 函数，将十进制的 tid 转化成十六进制。
 
-- 
-
 ```
 printf %x $tid
 ```
 
 （4）使用 jstack 命令，查看 Java 进程的线程栈。
 
-- 
-
 ```
 jstack $pid >$pid.log
 ```
 
 （5）使用 less 命令查看生成的文件，并查找刚才转化的十六进制 tid，找到发生问题的线程上下文。
-
-- 
 
 ```
 less $pid.log
