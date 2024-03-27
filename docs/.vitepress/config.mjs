@@ -3,7 +3,17 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "云站速递",
-  description: "云站速递，建造快乐",
+  description: "云站速递 | 我们致力于创造令人惊叹的用户体验",
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon-dark.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon-dark.png' }],
+    ['meta', { name: 'theme-color', content: '#5f67ee' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'en' }],
+    ['meta', { property: 'og:title', content: '云站速递 | 我们致力于创造令人惊叹的用户体验' }],
+    ['meta', { property: 'og:site_name', content: '云站速递' }],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: { src: '/favicon-dark.svg', width: 24, height: 24 },
