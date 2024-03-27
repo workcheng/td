@@ -1,8 +1,14 @@
->团队协作离不开[git]仓库，今天来给大家介绍一下配置[宝塔]上面的web hooks ,实现将本地代码提交到码云仓库后自己 更新到云服务器
+# 安装宝塔WebHook自动同步Git仓库
+
+> 团队协作离不开[git]仓库，今天来给大家介绍一下配置[宝塔]上面的web hooks ,实现将本地代码提交到码云仓库后自己 更新到云服务器
+
+## 安装宝塔WebHook插件
 
 一、在[宝塔]面板中的软件中安装“[宝塔][webhook]”，没有安装的直接点安装就行
 
 ![安装宝塔webhook](/安装宝塔webhook.png)
+
+## 生成公钥
 
 二、生成公钥（私有仓库一定要配置）
 
@@ -14,6 +20,8 @@ ssh-keygen -t rsa
 
 ![ssh-keygen](/ssh-keygen.png)
 
+## 配置公钥到gitee仓库
+
 三，查看公钥，并复制到码云[gitee]仓库
 
 ```
@@ -22,9 +30,9 @@ cat /root/.ssh/id_rsa.pub
 
 ![id_rsa](/id_rsa.png)
 
-四、创建[webhook]脚本
+## 创建WebHook脚本
 
-![webook脚本](/webook脚本.png)
+四、创建[webhook]脚本
 
 名称随便起就行
 
@@ -90,6 +98,8 @@ fi
 
 ```
 
+## 配置和测试
+
 ![宝塔WebHook](/宝塔WebHook.png)
 
 点击查看秘钥，复制脚本地址和秘钥
@@ -112,7 +122,7 @@ fi
 
 ![请求历史](/请求历史2.png)
 
-注意事项
+## 注意事项
 
 如果[webhook]执行了，查看推送过来的代码并没有创建成功，很有可能是权限的问题
 
@@ -125,7 +135,7 @@ ECDSA key fingerprint is MD5:27:e5:d3:f7:2a:9e:eb:6c:93:cd:1f:c1:47:a3:54:b1.
 Are you sure you want to continue connecting (yes/no)?
 ```
 
-# 补充
+## 补充
 转载的执行脚本有问题，最终使用脚本：
 ```
 #!/bin/bash
