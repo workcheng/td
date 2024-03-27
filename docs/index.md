@@ -2,10 +2,13 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+title: 云站速递
+titleTemplate: 构建软件，构建快乐，我们致力于创造令人惊叹的用户交付体验
+
 hero:
-  name: "云站速递"
-  text: "Build Software, Build Happiness"
-  tagline: 构建软件，构建快乐
+  name: "Build Software, Build Happiness"
+  text: "构建软件，构建快乐"
+  tagline: 我们致力于创造令人惊叹的用户交付体验
   actions:
     - theme: brand
       text: Markdown Examples
