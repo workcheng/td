@@ -1,8 +1,8 @@
->团队协作离不开[git](https://www.luweipai.cn/tag/git/ "git")仓库，今天来给大家介绍一下配置[宝塔](https://www.luweipai.cn/tag/%e5%ae%9d%e5%a1%94/ "宝塔")上面的web hooks ,实现将本地代码提交到码云仓库后自己 更新到云服务器
+>团队协作离不开[git]仓库，今天来给大家介绍一下配置[宝塔]上面的web hooks ,实现将本地代码提交到码云仓库后自己 更新到云服务器
 
-一、在[宝塔](https://www.luweipai.cn/tag/%e5%ae%9d%e5%a1%94)面板中的软件中安装”[宝塔](https://www.luweipai.cn/tag/%e5%ae%9d%e5%a1%94)[webhook](https://www.luweipai.cn/tag/webhook)”，没有安装的直接点安装就行
+一、在[宝塔]面板中的软件中安装“[宝塔][webhook]”，没有安装的直接点安装就行
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-0fd13d667fad6d1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![安装宝塔webhook](/安装宝塔webhook.png)
 
 二、生成公钥（私有仓库一定要配置）
 
@@ -12,23 +12,23 @@
 ssh-keygen -t rsa
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-25b0d3c7e9d1be83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![ssh-keygen](/ssh-keygen.png)
 
-三，查看公钥，并复制到码云[git](https://www.luweipai.cn/tag/git)ee仓库
+三，查看公钥，并复制到码云[gitee]仓库
 
 ```
 cat /root/.ssh/id_rsa.pub
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-7842d6ee240e7712.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![id_rsa](/id_rsa.png)
 
-四、创建[webhook](https://www.luweipai.cn/tag/webhook/ "webhook")s脚本
+四、创建[webhook]脚本
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-3318ece871e6f5ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![webook脚本](/webook脚本.png)
 
 名称随便起就行
 
-执行脚本可以参考以下，注意$1 [git](https://www.luweipai.cn/tag/git) 仓库最好和文件夹一致，如果不一致，可以根据自己的情况改一下下面的代码
+执行脚本可以参考以下，注意$1 [git]仓库最好和文件夹一致，如果不一致，可以根据自己的情况改一下下面的代码
 
 ```
 #!/bin/bash
@@ -90,33 +90,33 @@ fi
 
 ```
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-dcc62ed2ece8d73b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![宝塔WebHook](/宝塔WebHook.png)
 
 点击查看秘钥，复制脚本地址和秘钥
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-172a1a28dc519d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![查看密钥](/查看密钥.png)
 
-然后到码云配置[webhook](https://www.luweipai.cn/tag/webhook)
+然后到码云配置[webhook]
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-f1e09669f7734a82.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![添加WebHook](/添加WebHook.png)
 
 选择事件根据自己的情况选择即可
 
 创建完后，我们可以看到他默认请求了一次，也可以自己进行测试，直接点后面的测试即可，然后点击下面的查看更多，可以查看更多的详细信息
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-0e39b2c29da297f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![WebHooks管理](/WebHooks管理.png)
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-c9c2e2bbf7b40bc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![请求历史](/请求历史.png)
 
-然后我们回到[宝塔](https://www.luweipai.cn/tag/%e5%ae%9d%e5%a1%94)刷新查看[webhook](https://www.luweipai.cn/tag/webhook) 日志，可以看到已经调用了两次了
+然后我们回到[宝塔]刷新查看[webhook]日志，可以看到已经调用了两次了
 
-![image.png](https://upload-images.jianshu.io/upload_images/2219799-8094d032babe64df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![请求历史](/请求历史2.png)
 
 注意事项
 
-如果[webhook](https://www.luweipai.cn/tag/webhook)执行了，查看推送过来的代码并没有创建成功，很有可能是权限的问题
+如果[webhook]执行了，查看推送过来的代码并没有创建成功，很有可能是权限的问题
 
-我们尝试手动拉取一次，提示[git](https://www.luweipai.cn/tag/git)ee.com 不可信，这下找到原因了，直接根据提示输入yes 即可，后面的就可以实时的推送过来了
+我们尝试手动拉取一次，提示[gitee.com]不可信，这下找到原因了，直接根据提示输入yes 即可，后面的就可以实时的推送过来了
 
 ```
 The authenticity of host 'gitee.com (212.64.62.183)' can't be established.
@@ -124,12 +124,6 @@ ECDSA key fingerprint is SHA256:FQGC9Kn/eye1W8icdBgrQp+KkGYoFgbVr17bmjey0Wc.
 ECDSA key fingerprint is MD5:27:e5:d3:f7:2a:9e:eb:6c:93:cd:1f:c1:47:a3:54:b1.
 Are you sure you want to continue connecting (yes/no)?
 ```
-
-著作权归作者所有。
-商业转载请联系作者获得授权，非商业转载请注明出处。
-作者：ECHO陈文
-链接：https://www.luweipai.cn/ops/1628733995/
-来源：芦苇派
 
 # 补充
 转载的执行脚本有问题，最终使用脚本：
@@ -195,3 +189,9 @@ else
   exit
 fi
 ```
+
+著作权归作者所有。
+商业转载请联系作者获得授权，非商业转载请注明出处。
+作者：ECHO陈文
+链接：https://www.luweipai.cn/ops/1628733995/
+来源：芦苇派
