@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "云站速递",
-  description: "云站速递 | 我们致力于创造令人惊叹的用户交付体验",
+  title: "技术交付部",
+  description: "技术交付部 | 我们致力于创造令人惊叹的用户交付体验",
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: 'favicon-dark.svg' }],
@@ -11,8 +11,8 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
-    ['meta', { property: 'og:title', content: '云站速递 | 我们致力于创造令人惊叹的用户交付体验' }],
-    ['meta', { property: 'og:site_name', content: '云站速递' }],
+    ['meta', { property: 'og:title', content: '技术交付部 | 我们致力于创造令人惊叹的用户交付体验' }],
+    ['meta', { property: 'og:site_name', content: '技术交付部' }],
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
