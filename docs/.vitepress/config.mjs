@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: { src: '/favicon-dark.svg', width: 24, height: 24 },
+    logo: { src: 'favicon-dark.svg', width: 24, height: 24 },
     nav: [
       { text: '首页', link: '/' },
       { text: '示例', link: '/markdown-examples' },
