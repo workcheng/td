@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/",
+  base: "/td/",
   title: "技术交付部",
   description: "技术交付部 | 我们致力于创造令人惊叹的用户交付体验",
 
