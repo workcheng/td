@@ -6,8 +6,8 @@ export default defineConfig({
   description: "云站速递 | 我们致力于创造令人惊叹的用户交付体验",
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon-dark.svg' }],
-    ['link', { rel: 'icon', type: 'image/png', href: '/favicon-dark.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'favicon-dark.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', href: 'favicon-dark.png' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
