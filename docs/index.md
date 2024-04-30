@@ -16,6 +16,9 @@ hero:
     - theme: alt
       text: API Examples
       link: /api-examples
+  image:
+  src: /vitepress-logo-large.webp
+  alt: VitePress
 
 features:
   - title: 尾牙小程序
