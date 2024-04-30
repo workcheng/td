@@ -6,10 +6,16 @@ const members = [
     avatar: '/workcheng.jpg',
     name: 'Andy Cheng',
     title: 'Creator',
-    desc: 'Wechat(微信号): uoloandy',
+    desc: '高级应用开发工程师',
     links: [
       { icon: 'github', link: 'https://github.com/workcheng' }
     ]
+  },
+  {
+    avatar: '/workcheng1.jpg',
+    name: 'Cai XuanJu',
+    title: 'Leader',
+    desc: '技术交付负责人'
   }
 ]
 </script>
