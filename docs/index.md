@@ -3,12 +3,12 @@
 layout: home
 
 title: 技术交付部
-titleTemplate: 技术交付，我们致力于创造令人惊叹的用户交付体验
+titleTemplate: 技术交付，我们致力于创造高质量的用户交付体验
 
 hero:
   name: "Delivery, Ecosystem, Operations"
   text: "交付，生态，运营"
-  tagline: 我们致力于创造令人惊叹的用户交付体验
+  tagline: 我们致力于创造高质量的用户交付体验
   actions:
     - theme: brand
       text: Markdown Examples
