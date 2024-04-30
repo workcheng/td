@@ -40,6 +40,10 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/workcheng' }
     ],
 
+    search: {
+      provider: 'local'
+    },
+
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2018-present Andy Cheng'
