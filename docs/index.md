@@ -11,7 +11,7 @@ hero:
   tagline: 我们致力于创造高质量的用户交付体验
   actions:
     - theme: brand
-      text: Markdown 示例
+      text: 客户案例
       link: /markdown-examples
     - theme: alt
       text: API 示例
