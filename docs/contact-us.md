@@ -10,12 +10,6 @@ const members = [
     links: [
       { icon: 'github', link: 'https://github.com/workcheng' }
     ]
-  },
-  {
-    avatar: '/workcheng1.jpg',
-    name: 'Cai XuanJu',
-    title: 'Leader',
-    desc: '技术交付负责人'
   }
 ]
 </script>
