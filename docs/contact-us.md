@@ -3,7 +3,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: '/workcheng.jpg',
+    avatar: '/td/workcheng.jpg',
     name: 'Andy Cheng',
     title: 'Creator',
     desc: '高级应用开发工程师',
