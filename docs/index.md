@@ -17,7 +17,7 @@ hero:
       text: API 示例
       link: /api-examples
   image:
-    src: /index_logo.webp
+    src: /index_logo.png
     alt: VitePress
 
 features:
