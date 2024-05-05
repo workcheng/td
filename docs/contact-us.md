@@ -12,7 +12,7 @@ const members = [
     ]
   },
   {
-    avatar: '/workcheng1.jpg',
+    avatar: '/td/favicon-dark.png',
     name: 'Cai XuanJu',
     title: 'Leader',
     desc: '技术交付部负责人'
